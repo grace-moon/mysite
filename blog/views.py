@@ -41,7 +41,7 @@ def post_edit(request, pk):
 
 def result(request):
     query = request.GET['q']
-    posts = Post.objects.filter(title__contains=query)
+    posts = Post.objects.filter(title__contains=query) | Post.objects.filter(text__contains=query)
 #    if 'q' in request.GET:
 #        post = post.objects.all().filter(title__contains=query)| Q(description__contains=query)
     return render(request, 'blog/result.html', {'posts':posts})
